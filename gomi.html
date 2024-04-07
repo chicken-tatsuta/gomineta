@@ -37,6 +37,44 @@
     width: 300px;
     padding:0px 40%;
   }
+
+  @media screen and (max-width:480px) {
+    body {
+    background-image: url('https://ibb.co/F3wjb4K.jpg'); /* ここに背景画像のURLを指定してください */
+    background-size: cover; /* 背景画像をカバーとして全体に表示 */
+    background-position: center; /* 背景画像を中央に配置 */
+    color: #fff; /* テキストの色を白に設定 */
+    font-family: Arial, sans-serif; /* フォントファミリーを指定 */
+    background-color:#ffe9c1;
+  }
+  #container {
+    background-color: rgba(0, 0, 0, 0.5); /* コンテナの背景色を半透明の黒に設定 */
+    padding: 20px; /* コンテナの内側に余白を設定 */
+    border-radius: 10px; /* コンテナの角を丸くする */
+    width: 300px; /* コンテナの幅を設定 */
+    margin: auto; /* 上下左右のマージンを自動で均等に設定 */
+    text-align: center; /* テキストを中央揃えにする */
+  }
+  button {
+    margin-top: 10px; /* ボタンの上の余白を設定 */
+    padding: 10px 20px; /* ボタン内の上下左右の余白を設定 */
+    font-size: 16px; /* フォントサイズを設定 */
+    color: #000; /* ボタンのテキスト色を黒に設定 */
+    background-color: #fff; /* ボタンの背景色を白に設定 */
+    border: none; /* ボタンの境界線を削除 */
+    cursor: pointer; /* カーソルを指マークに設定 */
+    border-radius: 5px; /* ボタンの角を丸くする */
+  }
+
+  .gomizinzin {
+    width: 300px;
+    padding:0px 40%;
+  }
+
+  .all {
+    padding:0px 33%;
+  }
+}
 </style>
 <script>
 let currentStep = 0; // 現在の質問ステップを追跡
@@ -101,7 +139,7 @@ function init() {
 <body onload="init();">
 
     <img class="gomizinzin" src="./gazou/gomizin.webp" alt="gomizin">
-
+<div class="all">
 <div id="container">
   <h2>ゴミネーター</h2>
   <div id="question">ここに質問が表示されます。</div>
@@ -109,6 +147,7 @@ function init() {
     <button id="yes-button">Yes</button>
     <button id="no-button">No</button>
   </div>
+</div>
 </div>
 
 </body>
