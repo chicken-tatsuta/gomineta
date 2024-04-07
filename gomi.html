@@ -1,0 +1,115 @@
+<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ゴミネーター</title>
+<style>
+  body {
+    background-image: url('https://ibb.co/F3wjb4K.jpg'); /* ここに背景画像のURLを指定してください */
+    background-size: cover; /* 背景画像をカバーとして全体に表示 */
+    background-position: center; /* 背景画像を中央に配置 */
+    color: #fff; /* テキストの色を白に設定 */
+    font-family: Arial, sans-serif; /* フォントファミリーを指定 */
+    background-color:#ffe9c1;
+  }
+  #container {
+    background-color: rgba(0, 0, 0, 0.5); /* コンテナの背景色を半透明の黒に設定 */
+    padding: 20px; /* コンテナの内側に余白を設定 */
+    border-radius: 10px; /* コンテナの角を丸くする */
+    width: 300px; /* コンテナの幅を設定 */
+    margin: auto; /* 上下左右のマージンを自動で均等に設定 */
+    text-align: center; /* テキストを中央揃えにする */
+  }
+  button {
+    margin-top: 10px; /* ボタンの上の余白を設定 */
+    padding: 10px 20px; /* ボタン内の上下左右の余白を設定 */
+    font-size: 16px; /* フォントサイズを設定 */
+    color: #000; /* ボタンのテキスト色を黒に設定 */
+    background-color: #fff; /* ボタンの背景色を白に設定 */
+    border: none; /* ボタンの境界線を削除 */
+    cursor: pointer; /* カーソルを指マークに設定 */
+    border-radius: 5px; /* ボタンの角を丸くする */
+  }
+
+  .gomizinzin {
+    width: 300px;
+    padding:0px 565px;
+  }
+</style>
+<script>
+let currentStep = 0; // 現在の質問ステップを追跡
+
+// 質問のステップごとに処理する関数
+function handleAnswer(isYes) {
+    switch(currentStep) {
+        case 0: // ひもっぽいかどうか
+            if (isYes) {
+                document.getElementById("question").innerText = "カサカサ鳴ったりします?";
+                currentStep = 1;
+            } else {
+                document.getElementById("question").innerText = "このゴミはペットボトルですか?";
+                currentStep = 3;
+            }
+            break;
+        case 1: // ひもが熱いかどうか
+            if (isYes) {
+                alert("このゴミはプラスチック製のひもですね。プラスチックのところに捨ててください。");
+            } else {
+                alert("このゴミは紙製のひもですね。燃やすごみのところに捨ててください。");
+            }
+            reset();
+            break;
+        case 3: // ペットボトルかどうか
+            if (isYes) {
+                document.getElementById("question").innerText = "このペットボトルにラベルやキャップが付いていますか?";
+                currentStep = 4;
+            } else {
+                // ペットボトルでない場合の処理
+                alert("記憶にございません。");
+                reset();
+            }
+            break;
+        case 4: // ペットボトルにラベルやキャップが付いているか
+            if (isYes) {
+                alert("このゴミはラベルやキャップが付いたままのペットボトルです。ラベルやキャップをとってからリサイクルしてください。");
+            } else {
+                alert("このゴミはきれいなペットボトルです。リサイクル可能です。");
+            }
+            reset();
+            break;
+        default:
+            reset();
+    }
+}
+
+// 質問をリセットし、最初の質問に戻る
+function reset() {
+    document.getElementById("question").innerText = "このゴミはひもっぽいですか?";
+    currentStep = 0;
+}
+
+// 初期化関数
+function init() {
+    document.getElementById("yes-button").onclick = function() { handleAnswer(true); };
+    document.getElementById("no-button").onclick = function() { handleAnswer(false); };
+    reset();
+}
+</script>
+</head>
+<body onload="init();">
+
+    <img class="gomizinzin" src="./gazou/gomizin.webp" alt="gomizin">
+
+<div id="container">
+  <h2>ゴミネーター</h2>
+  <div id="question">ここに質問が表示されます。</div>
+  <div id="buttons">
+    <button id="yes-button">Yes</button>
+    <button id="no-button">No</button>
+  </div>
+</div>
+
+</body>
+</html>
